@@ -89,3 +89,15 @@ a {
     color: rgb(0, 179, 255);
     text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) {
+    .picturebox img{
+        height: 40vh;
+    }
+    #title{
+        font-size: 14px;
+    }
+    h3,h2,h1,a{
+        text-align: center;
+    }
+}
