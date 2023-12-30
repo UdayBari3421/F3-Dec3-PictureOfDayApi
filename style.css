@@ -1,0 +1,27 @@
+.picturebox {
+    color: white;
+    /* height: 70vh; */
+    width: 97%;
+    background: black;
+    padding: 15px 20px;
+}
+
+.picturebox img {
+    height: 500px;
+        width: 1000px;
+    border: 2px solid white;
+}
+
+.picturebox h3,
+.picturebox p {
+    width: 80%;
+}
+
+#previous {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: blue;
+}
