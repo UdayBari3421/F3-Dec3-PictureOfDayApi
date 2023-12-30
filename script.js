@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  clearLocalStorage(); // Clear local storage on initial load
+  clearLocalStorage();
   getCurrentImageOfTheDay();
 
-  // Event listener for form submission
   document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -65,20 +64,18 @@ function displaySearchHistory() {
   const previousElement = document.getElementById("previous");
   const searches = JSON.parse(localStorage.getItem("searches")) || [];
 
-  // Clear previous searches
   previousElement.innerHTML = "<h3>Previous Searches</h3>";
 
   if (searches.length > 0) {
     searches.forEach((date) => {
       const anchor = document.createElement("a");
       anchor.textContent = date;
-      anchor.href = "#"; // You can set this to '#' or a relevant link if needed
+      anchor.href = "#";
       anchor.addEventListener("click", () => {
         getImageOfTheDay(date);
       });
 
       previousElement.appendChild(anchor);
-      previousElement.appendChild(document.createElement("br")); // Optional: Add line breaks for better spacing
     });
   } else {
     previousElement.innerHTML += "<p>No previous searches</p>";
