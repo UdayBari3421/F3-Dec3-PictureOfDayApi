@@ -16,22 +16,29 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function getCurrentImageOfTheDay() {
-  const currentDate = new Date().toISOString().split("T")[0];
+  let dateObj = new Date();
+  dateObj.setDate(dateObj.getDate() - 1);
+  const currentDate = dateObj.toISOString().split("T")[0];
+  console.log(currentDate);
   getImageOfTheDay(currentDate);
 }
 
-function getImageOfTheDay(date) {
+async function getImageOfTheDay(date) {
   const apiKey = "hZxEtoKWR5oZE3aFEuR3BbYxxxRs2pIz4ebZJCoM";
   const apiUrl = `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${apiKey}`;
 
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      displayImage(data);
-      saveSearch(date);
-      displaySearchHistory();
-    })
-    .catch((error) => console.error("Error fetching data:", error));
+  try {
+    await axios
+      .get(apiUrl)
+      .then((response) => {
+        displayImage(response.data);
+        saveSearch(date);
+        displaySearchHistory();
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  } catch (error) {}
 }
 
 function displayImage(data) {
